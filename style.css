@@ -1,0 +1,16 @@
+.bad { background-color: #ffff00; }
+# p.label { font-weight: bold; }
+thead tr th { font-weight: bold; border: 1px solid white; padding: 5px; }
+th { font-weight: normal; background-color: silver; border: 1px solid white; padding: 5px; }
+td { padding: 5px; }
+.numeric { text-align: center;}
+.label { text-decoration: underline;}
+.dup { background-color: #ffbcbc; }
+.alter { background-color: #ffa500; }
+table.data { border-collapse: collapse; }
+.data tr td { border: 1px solid black; padding: 5px; }
+table.legend { width: 800px; /* Ширина таблицы */
+    margin: auto; /* Выравниваем таблицу по центру окна  */
+    text-align: center;
+}
+.disclaimer { text-align:  center; color: red; font-weight: bold; }
