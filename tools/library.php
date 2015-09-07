@@ -33,7 +33,6 @@ function get_link ($db_host, $db_user, $db_pass, $db_name) {
   return $link;
 }
 
-# Функция get_from_wikidata больше не используется
 function get_from_wikidata ($id, &$last_time=0) {
   # Функция получает данные непосредственно с Викиданных по API.
   # Параметр $last_time позволяет делать запросы не чаще одного раза в 5 секунд

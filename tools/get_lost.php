@@ -15,10 +15,11 @@ function get_from_json ($link, $handle, $item) {
   $result=mysqli_query ($link, $query);
   
   # Если такого элемента в дампе нет, значит было слияние и теперь на его месте стоит перенаправление
-  # Возвращаем пустое значение
+  # Берём реальный элемент из Викиданных
   if (!($row=mysqli_fetch_array ($result, MYSQLI_ASSOC))) {
-    echo "\n$item не найден\n";
-    return null;
+    $entity=get_from_wikidata($item);
+    echo "\n$item взят из Викиданных\n";
+    return $entity['entities'][$item];
   }
 
   fseek($handle, $row['pos']);
@@ -55,11 +56,6 @@ function get_lost ($link, $handle, $row, $field) {
   
   mysqli_free_result($result);
   $item_w=get_from_json ($link, $handle, $item);
-  
-  # Если элемент пустой, значит это перенаправление. Возвращаемся
-  if ($item_w === null) {
-    return 0;
-  }
   
   $values='\''.$item.'\'';
   $cols='item';
