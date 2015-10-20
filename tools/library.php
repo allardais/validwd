@@ -274,7 +274,9 @@ function print_table_old ($link, $data_date, $base_table, $level, $ter='00', $ko
 
   $disclaimer2="<div class=\"disclaimer\"><p>Не спешите исправлять ошибки! Проверьте, может так и должно быть.</p></div>\n";
 
-  $legend='<table class="legend"><tr><td class="dup">Элементы с одинаковым кодом</td><td class="bad">Неожиданный код</td><td class="alter">Элемента с таким кодом нет,<br>есть с аналогичным кодом</td></tr></table>';
+  $legend='<table class="legend"><tr><td class="dup">Элементы с одинаковым кодом</td><td class="bad">Неожиданный код</td>';
+  #$legend.='<td class="alter">Элемента с таким кодом нет,<br>есть с аналогичным кодом</td>';
+  $legend.='</tr></table>';
 
   if ($mode == 'html') {
     if ($level > 1)
@@ -296,10 +298,14 @@ function print_table_old ($link, $data_date, $base_table, $level, $ter='00', $ko
   $table='<table class="data"><thead><tr>';
   $table.='<th>Найдено вложенных элементов</th>';
 
-  if ($base_table == 'okato')
-    $table.='<th>ОКАТО</th><th>Аналог. ОКТМО</th>';
-    elseif ($base_table == 'oktmo')
-      $table.='<th>ОКТМО</th><th>Аналог. ОКАТО</th>';
+  if ($base_table == 'okato'){
+    $table.='<th>ОКАТО</th>';
+    #$table.='<th>Аналог. ОКТМО</th>';
+  }
+    elseif ($base_table == 'oktmo'){
+      $table.='<th>ОКТМО</th>';
+      #$table.='<th>Аналог. ОКАТО</th>';
+    }
 
   $table.='<th>Элемент классификатора</th>';
   $table.='<th>Элемент Викиданных</th>';
@@ -367,7 +373,7 @@ function print_table_old ($link, $data_date, $base_table, $level, $ter='00', $ko
     $num_items=mysqli_num_rows($result_w);
     if (1 < $num_items)
       $base_dup=true;
-
+/*
     if ( (0 == $num_items) and ($alter_code !='') ) {
       $clause=$alter_table.'=\''.$alter_code.'\'';
       $query="SELECT $fields FROM wikidata WHERE ($clause)";
@@ -381,7 +387,7 @@ function print_table_old ($link, $data_date, $base_table, $level, $ter='00', $ko
       if (1 < $num_items)
 	$alter_dup=true;
     }
-
+*/
     $row_w=mysqli_fetch_array ($result_w, MYSQLI_ASSOC);
 
     if ($level==1)
@@ -693,7 +699,9 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
 
   $disclaimer2="<div class=\"disclaimer\"><p>Не спешите исправлять ошибки! Проверьте, может так и должно быть.</p></div>\n";
 
-  $legend='<table class="legend"><tr><td class="dup">Элементы с одинаковым кодом</td><td class="bad">Неожиданный код</td><td class="alter">Элемента с таким кодом нет,<br>есть с аналогичным кодом</td></tr></table>';
+  $legend='<table class="legend"><tr><td class="dup">Элементы с одинаковым кодом</td><td class="bad">Неожиданный код</td>';
+  #$legend.='<td class="alter">Элемента с таким кодом нет,<br>есть с аналогичным кодом</td>';
+  $legend.='</tr></table>';
   
   # Начинаем выводить html
 
@@ -717,8 +725,14 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
   $table='<table class="data"><thead><tr>';
   $table.='<th>Найдено вложенных элементов</th>';
 
-  if ($base_table == 'okato') $table.='<th>ОКАТО</th><th>Аналог. ОКТМО</th>';
-    elseif ($base_table == 'oktmo') $table.='<th>ОКТМО</th><th>Аналог. ОКАТО</th>';
+  if ($base_table == 'okato'){
+    $table.='<th>ОКАТО</th>';
+    #$table.='<th>Аналог. ОКТМО</th>';
+  }
+    elseif ($base_table == 'oktmo'){
+      $table.='<th>ОКТМО</th>';
+      #$table.='<th>Аналог. ОКАТО</th>';
+    }
 
   $table.='<th>Элемент классификатора</th>';
   $table.='<th>Элемент Викиданных</th>';
@@ -816,7 +830,7 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
       $base_dup=true;
 
     # Элементов с данным кодом не нашлось. Попробуем найти с аналогичным (если есть такой).
-    if ( (0 == $num_items) and ($alter_code !='') ) {
+/*    if ( (0 == $num_items) and ($alter_code !='') ) {
       $clause=$alter_table.'=\''.$alter_code.'\'';
       $query="SELECT $fields FROM wikidata WHERE ($clause)";
       $result_w=mysqli_query ($link, $query);
@@ -828,7 +842,7 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
 
       if (1 < $num_items)
 	$alter_dup=true;
-    }
+    }*/
 
     # Берём первый найденный элемент Викиданных
     $row_w=mysqli_fetch_array ($result_w, MYSQLI_ASSOC);
@@ -880,10 +894,10 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
       # Проверка соответствия кодов элемента классификаторам (проверка на неожиданность).
       if (($row_w[$base_table] != $base_code) and (isset ($row_w [$base_table])) )
 	$base_bad=true;
-
+/*
       if (($row_w [$alter_table] != $alter_code) and (isset ($row_w [$alter_table])) )
 	$alter_bad=true;
-
+*/
       # Формируем вывод строк таблицы
       # Раскрашиваем строки с дубликатами и элементами, найденными по альтернативному коду
       if ($base_dup or $alter_dup)
@@ -903,12 +917,12 @@ function print_table ($link, $data_date, $base_table, $code='', $mode='direct') 
 	  $output_row.=' class="bad"';
 
 	$output_row.='>'.$base_code.'</th>';
-	$output_row.='<th'.$rowspan;
+	/*$output_row.='<th'.$rowspan;
 
 	if ($alter_bad)
 	  $output_row.=' class="bad"';
 
-	$output_row.='>'.$alter_code.'</th>';
+	$output_row.='>'.$alter_code.'</th>';*/
 	$output_row.='<th';
 
         # Добавляем всплывающий коммментарий из классификатора, при наличии

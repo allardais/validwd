@@ -23,8 +23,6 @@ create table okato ( \
         exist mediumint default 0, \
         numfound mediumint default 0, \
         found bit default 0, \
-        html bit default 0, \
-        checked bit default 0, \
 	mergedcode varchar (11) default NULL, \
 	index okato_ind (ter, kod1, kod2, kod3, razdel), \
 	index merged_okato_ind (mergedcode)); \
@@ -33,7 +31,6 @@ load data local infile 'okato.csv' \
         fields terminated by ';' \
         enclosed by '' \
         lines terminated by '\n' \
-        ignore 1 lines \
         (ter, kod1, kod2, kod3, razdel, type, name, centrum, nomdeskr, nomakt, status, dateutv, datevved);" | \
 mysql --user=$USER --password=$PASS --local-infile=1 $DB
 

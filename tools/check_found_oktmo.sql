@@ -8,7 +8,7 @@ SELECT SQL_CALC_FOUND_ROWS 1 FROM oktmo LIMIT 0;
 SET @num_codes= FOUND_ROWS();
 SET @i=1;
 WHILE @i <= @num_codes DO
-  SELECT @merged_code:=mergedcode, @checked:=checked FROM oktmo WHERE id=@i;
+  SELECT @merged_code:=mergedcode FROM oktmo WHERE id=@i;
   IF EXISTS (SELECT 1 FROM wikidata WHERE oktmo=@merged_code)
     THEN
       UPDATE LOW_PRIORITY oktmo SET found=1 WHERE id=@i;

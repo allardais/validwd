@@ -8,7 +8,7 @@ SELECT SQL_CALC_FOUND_ROWS 1 FROM okato LIMIT 0;
 SET @num_codes= FOUND_ROWS();
 SET @i=1;
 WHILE @i <= @num_codes DO
-  SELECT @merged_code:=mergedcode, @checked:=checked FROM okato WHERE id=@i;
+  SELECT @merged_code:=mergedcode FROM okato WHERE id=@i;
     IF EXISTS (SELECT 1 FROM wikidata WHERE okato=@merged_code)
       THEN
 	UPDATE LOW_PRIORITY okato SET found=1 WHERE id=@i;

@@ -24,8 +24,6 @@ create table oktmo ( \
         exist mediumint default 0, \
         numfound mediumint default 0, \
         found bit default 0, \
-        html bit default 0, \
-        checked bit default 0, \
 	mergedcode varchar (11) default NULL, \
 	index oktmo_ind (ter, kod1, kod2, kod3, razdel), \
 	index merged_oktmo_ind (mergedcode)); \

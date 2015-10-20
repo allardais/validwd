@@ -11,11 +11,11 @@ echo -e "\n`date +%T` Выполняется обнуление результа
 
 if [ $1 = "okato" ]
   then
-    QUERY="UPDATE okato SET found=0, numfound=0, checked=0; UPDATE wikidata SET okatopassed=0;"
+    QUERY="UPDATE okato SET found=0, numfound=0; UPDATE wikidata SET okatopassed=0;"
   else
     if [ $1 = "oktmo" ]
       then
-	QUERY="UPDATE oktmo SET found=0, numfound=0, checked=0; UPDATE wikidata SET oktmopassed=0;"
+	QUERY="UPDATE oktmo SET found=0, numfound=0; UPDATE wikidata SET oktmopassed=0;"
     fi
 fi
 
