@@ -49,13 +49,13 @@ $data_date=substr(file_get_contents($work_files_path.'data_date'),0,10);
 
 $time=-time();
 
-#make_html ($link, $data_date, 'okato');
+make_html ($link, $data_date, 'okato');
 
-#make_html ($link, $data_date, 'oktmo');
+make_html ($link, $data_date, 'oktmo');
 
 $mode='html';
 
-#include ('l0.php');
+include ('l0.php');
 
 include ('lost.php');
 
