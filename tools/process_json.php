@@ -60,7 +60,7 @@ while (($s1=fgets ($handle)) !== false) {
   fwrite ($handle_index, $item ["id"].';'.$last_pos.';'.$len."\n");
 
   # Если это свойство, пропускаем его
-  if (substr($item ["id"],1,1)=='P')
+  if (substr($item ["id"],0,1)=='P')
     continue;
 
   $values=$item ["id"];

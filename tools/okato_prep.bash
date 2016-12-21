@@ -3,6 +3,7 @@
 source values.bash
 
 iconv -f WINDOWS-1251 -t UTF-8 $1 | \
+sed -r 's/\;\"/;/g' | sed -r 's/\"\;/;/g' | sed -r 's/^\"//g' | \
 sed '/населенные пункты/d' | \
 sed '/Районы/d' | \
 sed '/сельсовета/d' | \

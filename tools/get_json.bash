@@ -16,6 +16,7 @@ cd $WORK_FILES_PATH
 echo -e "\n`date +%T` Скачивание свежего дампа\n"
 
 wget -c http://dumps.wikimedia.org/other/wikidata/$FILENAME.gz 
+#wget -c http://dumps.wikimedia.org/wikidatawiki/entities/$FILENAME/wikidata-$FILENAME-all.json.gz
 
 echo -e "\n`date +%T` Распаковка\n"
 
